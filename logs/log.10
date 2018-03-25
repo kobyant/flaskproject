@@ -1,0 +1,3 @@
+DEBUG index.py:8 调试
+INFO index.py:9 配置信息
+WARNING index.py:10 警告

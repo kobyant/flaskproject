@@ -1,0 +1,43 @@
+一旦功能完成之后需要做:
+单元测试或者是通过浏览器测试
+
+
+接口文档:
+
+请求路径: http://127.0.0.1:5000/api/v1_0/get_image_code/<image_code>
+
+请求方式: GET
+
+    请求参数
+        参数名称        参数类型        是否必传     说明
+        image_code      字符串         是         图片编号
+
+
+返回值:
+    正常: 图片(image/jpg)
+    异常: json数据; (errno: 错误编号,  errmsg:错误的信息)
+
+图片存储:
+1. 使用文件进行存储
+    缺点: 如果系统一旦宕机,所有的数据丢失,风险大
+        用户a     1.jpg
+        用户b     2.jpg
+        两个用户的图片名字不一样,但是内容一样,浪费空间
+
+        用户a     1.jpg
+        用户b     1.jpg
+        两个用户图片的名字一样,但是内容不一样,后上传的覆盖先上传的.
+
+2. 借助第三方开源软件搭建文件存储系统,比如: FastDFS, HDF
+3. 使用第三方文件存储系统,比如七牛:www.qiniu.com  免费10G   -->选用
+    pip install qiniu安装sdk
+
+
+
+redis中的常用操作指令:
+http://redisdoc.com/
+incr key   如果key存在,将key对应的value+1操作, 如果不存在初始化为0
+
+
+关于csrf验证:
+如果是POST,DELTE,PUT请求需要带上csrf_toekn
